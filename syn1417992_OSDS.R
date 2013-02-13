@@ -9,7 +9,7 @@ require(devtools)
 #  download.file("http://dl.dropbox.com/u/11986954/Oslo/DreamBox7_0.214.tar.gz", destfile="./DreamBox7_0.214.tar.gz")
 #  install.packages("./DreamBox7_0.214.tar.gz", repos=NULL)
 
-  install_github(repo="DreamBox7", username="weiyi-bitw", ref="dev")
+  install_github(repo="DreamBox7", username="weiyi-bitw", ref="master")
   library(DreamBox7)
 
 setRefClass(Class = "PredictiveModel")
