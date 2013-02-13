@@ -9,7 +9,7 @@ require(devtools)
 #  download.file("http://dl.dropbox.com/u/11986954/Oslo/DreamBox7_0.214.tar.gz", destfile="./DreamBox7_0.214.tar.gz")
 #  install.packages("./DreamBox7_0.214.tar.gz", repos=NULL)
 
-  install_github(repo="DreamBox7", username="weiyi-bitw")
+  install_github(repo="DreamBox7", username="weiyi-bitw", ref="dev")
   library(DreamBox7)
 
 setRefClass(Class = "PredictiveModel")
@@ -28,8 +28,9 @@ GoldiloxModel <- setRefClass(Class  = "GoldiloxModel",
                           methods  = list(
                             
                             initialize = function(...){
-  				download.file("http://dl.dropbox.com/u/11986954/Oslo/metabric.surv.ds.rdata", destfile="./metabric.surv.ds.rdata")
-				load("metabric.surv.ds.rdata")
+				fname = tempfile()
+				download.file(url="https://raw.github.com/weiyi-bitw/BCCModels/master/metabric.surv.ds.rdata", destfile=fname, method="wget")
+				load(fname)
 				.self$dssurv = surv.ds
                               return(.self)
                             },
@@ -39,7 +40,7 @@ GoldiloxModel <- setRefClass(Class  = "GoldiloxModel",
                               if(class(clinicalSurvData) != "Surv"){
                                 stop("Expecting 'responseData' object of type 'Surv'")
                               }
-				source("http://dl.dropbox.com/u/11986954/Oslo/select/syn1417992_fix.R")
+				source_url("https://raw.github.com/weiyi-bitw/BCCModels/master/syn1417992_fix.R")
 							
    				gdModel.os <- GoldiModel$new()
 				gdModel.os$customTrain(exprData, copyData, clinicalFeaturesData,clinicalSurvData) 
