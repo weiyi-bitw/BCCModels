@@ -29,7 +29,7 @@ GoldiloxModel <- setRefClass(Class  = "GoldiloxModel",
                             
                             initialize = function(...){
 				fname = tempfile()
-				download.file(url="https://raw.github.com/weiyi-bitw/BCCModels/master/metabric.surv.ds.rdata", destfile=fname, method="wget")
+				download.file(url="https://raw.github.com/weiyi-bitw/BCCModels/master/metabric.surv.ds.rdata", destfile=fname, method="curl")
 				load(fname)
 				.self$dssurv = surv.ds
                               return(.self)
